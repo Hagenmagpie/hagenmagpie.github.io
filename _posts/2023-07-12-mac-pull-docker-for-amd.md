@@ -9,11 +9,19 @@ published: true
 
 如果你恰巧是Mac电脑作为工作机器，默认下载的是arm架构的容器。在amd系统下的linux服务器中是服务运行的。
 
-可以通过下面命令设置docker平台架构
+
+## 通过命令设置docker平台架构
 
 ```
 export DOCKER_DEFAULT_PLATFORM=linux/amd64
+
+docker pull ubuntu:20.04
 ```
 
-然后再docker pull 容器，即可得到指定架构的容器。
+
+## 直接在拉取命令中增加参数
+
+```
+docker pull --platform=linux/amd64 ubuntu:20.04
+```
 
