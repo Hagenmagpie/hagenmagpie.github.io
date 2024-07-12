@@ -19,7 +19,7 @@ ssh-keygen -t rsa
 
 生产如下文件
 
-![image-20240704125356890](./posts/assets/image-20240704125356890.png)
+![image-20240704125356890](./assets/image-20240704125356890.png)
 
 ## 2、上传公钥
 
