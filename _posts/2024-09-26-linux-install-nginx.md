@@ -1,7 +1,8 @@
 ---
-title: Linux系统离线安装nginx
+title: Linux系统离线安装Nginx
 published: true
 ---
+
 
 # 通过源码安装nginx
 
@@ -125,19 +126,21 @@ docker pull --platform=linux/amd64  nginx:latest
 
 ```
 
-## 1.2、导出离线包
+### 1.2、导出离线包
 ```
 docker save -o nginx.tar nginx:latest
 
 ```
 
-## 3、拷贝到目标机器并加载容器
+### 1.3、拷贝到目标机器并加载容器
 
 ```
 docker load -i nginx.tar 
 ```
 
-## 4、生成安全证书
+## 2、nginx https 配置
+
+### 2.1 生成安全证书
 
 ```
 openssl genrsa -out /etc/pki/nginx/private/server.key 2048
@@ -148,7 +151,7 @@ openssl x509 -req -days 365 -in server.csr -signkey /etc/pki/nginx/private/serve
 
 ```
 
-## 5、配置https服务文件
+### 2.2 配置https服务文件
 
 mkdir /data/nginx/conf && vi /data/nginx/conf/nginx.conf
 
@@ -168,14 +171,15 @@ server {
 
 ```
 
-## 6、启动docker 容器
+## 3、启动docker 容器
 
+### 3.1 启动docker 
 ```
 docker run --name nginx -v /data/nginx/conf/nginx.conf:/etc/nginx/nginx.conf  -v /etc/pki/nginx/private/server.key:/etc/nginx/server.key  -v /etc/pki/nginx/server.crt:/etc/nginx/server.crt -p 443:443  -d nginx
 
 ```
 
-## 7 、测试服务
+### 3.2 测试服务
 
 ```
 curl -k https://127.0.0.1
