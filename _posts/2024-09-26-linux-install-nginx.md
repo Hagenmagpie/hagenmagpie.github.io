@@ -86,10 +86,14 @@ vi /usr/local/nginx/conf/nginx.conf
 
 ```
 server {
-    listen       443 ssl  default_server;                              
-	listen       [::]:443 ssl  default_server;                      
-	server_name  _;                                                          
-	ssl_certificate "/etc/nginx/server.crt";                                         ssl_certificate_key "/etc/nginx/server.key";                                     ssl_session_cache shared:SSL:1m;                                                 ssl_session_timeout  10m;                                                        ssl_prefer_server_ciphers on;
+    listen       443 ssl  default_server;
+	listen       [::]:443 ssl  default_server;
+	server_name  _;           
+	ssl_certificate "/etc/nginx/server.crt";
+    ssl_certificate_key "/etc/pki/nginx/private/server.key";
+    ssl_session_cache shared:SSL:1m;
+    ssl_session_timeout  10m;
+    ssl_prefer_server_ciphers on;
     location / {
         proxy_pass https://x.x.x.x;
         proxy_set_header Host $host;
@@ -160,7 +164,11 @@ server {
     listen       443 ssl  default_server;                              
 	listen       [::]:443 ssl  default_server;                      
 	server_name  _;                                                          
-	ssl_certificate "/etc/nginx/server.crt";                                         ssl_certificate_key "/etc/nginx/server.key";                                     ssl_session_cache shared:SSL:1m;                                                 ssl_session_timeout  10m;                                                        ssl_prefer_server_ciphers on;
+	ssl_certificate "/etc/nginx/server.crt";
+    ssl_certificate_key "/etc/nginx/server.key";
+    ssl_session_cache shared:SSL:1m;
+    ssl_session_timeout  10m;
+    ssl_prefer_server_ciphers on;
     location / {
         proxy_pass https://x.x.x.x;
         proxy_set_header Host $host;
