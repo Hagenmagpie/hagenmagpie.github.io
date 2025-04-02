@@ -56,6 +56,6 @@ systemctl restart docker
 
 ```
 docker buildx imagetools create \
-  --tag harbor.hagenpie.com/jdk/maven:3-openjdk-11 \
+  --tag harbor.hagenmagpie.com/jdk/maven:3-openjdk-11 \
   maven:3-openjdk-11
 ```
