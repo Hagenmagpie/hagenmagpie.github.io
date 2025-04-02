@@ -37,7 +37,11 @@ vim /etc/docker/daemon.json
   "insecure-registries": ["https://harbor.xxx.com"], // 不安全的镜像仓库地址
   "features": {
     "buildkit": true // 启用 BuildKit 特性，以提高构建性能
-  }
+  },
+  "registry-mirrors": [ "https://dockerproxy.net" ],
+  "log-driver":"json-file",
+  "log-opts": {"max-size":"300m", "max-file":"3"}
+  
 }
 ```
 
@@ -45,4 +49,13 @@ vim /etc/docker/daemon.json
 ```
 systemctl restart docker
 
+```
+
+
+拉取镜像并推送到本地仓库,支持多平台拉取
+
+```
+docker buildx imagetools create \
+  --tag harbor.hagenpie.com/jdk/maven:3-openjdk-11 \
+  maven:3-openjdk-11
 ```
